@@ -161,6 +161,13 @@
               </select>
             </div>
             <div class="addProModal__form__inputs">
+              <p>Location</p>
+              <select name="Location" id="LocationInput">
+                <option value="">Select product Location</option>
+                <option value="no-loc">No Location</option>
+              </select>
+            </div>
+            <div class="addProModal__form__inputs">
               <p>Quantity</p>
               <input
                 type="number"
@@ -237,6 +244,58 @@
         </div>
       </div>
 
+      <!-------- Location Ui ---------------->
+      <!-- <div class="locationUi">
+          <div class="location__header">
+            <h1>Location</h1>
+            <button class="addlocationBtn">Add location</button>
+          </div>
+          <div class="location__items">
+            <div class="location__item">
+              <div class="location__item__text">
+                <h2 class="title">Location 1</h2>
+                <p class="description">
+                  jfdjkjdksjkfldsjfdks f dkfjddfj klf jdkf djkdfj k
+                </p>
+              </div>
+              <div class="location__item__icons">
+                <svg class="icon editlocationIcon">
+                  <use xlink:href="../assets/images/sprite.svg#editIcon"></use>
+                </svg>
+                <img
+                  src="../assets/images/deleteIcon.svg"
+                  alt="delete Icon"
+                  class="deleteBtnlocation"
+                />
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+      <div class="EditlocationSection --hidden">
+        <div class="EditLocMod">
+          <h1 class="EditLocMod__title">Edit Product</h1>
+          <form class="EditLocMod__form">
+            <input
+              type="text"
+              name="editTitle"
+              id="editTitle"
+              placeholder="Edit Title"
+            />
+            <input
+              type="text"
+              name="editDescription"
+              id="editDescription"
+              placeholder="Edit Description"
+            />
+
+            <div class="EditLocMod__btns">
+              <button class="cancelBtnEdit">Discard</button>
+              <button class="submitBtnEdit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
       <!--------------------------  Dashboard View(Ui)   ------------------------------->
       <!-- <div class="dashboardUi">
           <div class="dashboardUi__header">
