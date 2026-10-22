@@ -41,7 +41,7 @@ class LocationUi {
     mainApp.innerHTML = `
     <div class="LocationUi">
         <div class="Location__header">
-            <h1>Categories</h1>
+            <h1>Locations</h1>
             <button class="addLocationBtn">Add Location</button>
         </div>
         <div class="Location__items">
@@ -120,7 +120,7 @@ class LocationUi {
     }
 
     // Saving the data to localstorage
-    Storage.saveCategorie({
+    Storage.saveLocation({
       id: this.id,
       title: editTitleInput.value,
       description: editDesInput.value,
