@@ -51,15 +51,15 @@ class Storage {
     const allData =
       JSON.parse(localStorage.getItem("Inventorylocations")) || [];
 
-    this.sortArray(allData); // Sorting the Categories (newest first by default)
+    this.sortArray(allData); // Sorting the locations (newest first by default)
     return allData;
   }
 
   saveLocations(data) {
-    // Getting all of the categories
+    // Getting all of the locations
     const allLocations = this.getLocations();
     if (data.id != 0) {
-      // Finding the category that already exists
+      // Finding the location that already exists
       const existed = allLocations.find((location) => location.id == data.id);
 
       existed.title = data.title;
@@ -85,7 +85,7 @@ class Storage {
     }
     localStorage.setItem("Inventorylocations", JSON.stringify(allLocations));
   }
-  //endnew
+
   saveProduct(data) {
     // Getting all of the Data
     const allProducts = this.getProducts();
