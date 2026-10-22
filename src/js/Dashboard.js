@@ -28,12 +28,17 @@ class DashboardUi {
             <p>Total Value in Hand</p>
         </div>
 
- 
-
         <div class="dashboardUi__main__items">
             <img src="../assets/images/Categoriescolor.svg" alt="category" />
             <p class="dashboardUi__notAvailable">${this.totalCategories()}</p>
             <p>Total Categories</p>
+        </div>
+        </div>
+
+        <div class="dashboardUi__main__items">
+            <img src="../assets/images/Locationscolor.svg" alt="Location" />
+            <p class="dashboardUi__notAvailable">${this.totalLocations()}</p>
+            <p>Total Locations</p>
         </div>
         </div>
     </div>`;
@@ -61,6 +66,13 @@ class DashboardUi {
   totalCategories() {
     const allCategories = Storage.getCategories();
     const total = allCategories.length;
+    return total.toLocaleString();
+  }
+  
+  // Calculate total locations
+  totalLocations() {
+    const allLocations = Storage.getLocations();
+    const total = allLocations.length;
     return total.toLocaleString();
   }
 
