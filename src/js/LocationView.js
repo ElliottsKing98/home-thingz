@@ -1,34 +1,34 @@
 import Storage from "./API.js";
-
+//update all Location to location
 const mainApp = document.querySelector(".main");
 
-// ------------------------- Selecting Category Modal --------------------------
-const categoryModal = document.querySelector(".EditCategorySection");
-const categoryBack = document.querySelector(".EditCategorySection");
+// ------------------------- Selecting Location Modal --------------------------
+const LocationModal = document.querySelector(".EditLocationSection");
+const LocationBack = document.querySelector(".EditLocationSection");
 const cancelBtnEdit = document.querySelector(".cancelBtnEdit");
-const categoryModTitle = document.querySelector(".EditCatMod__title");
+const LocationModTitle = document.querySelector(".EditLocMod__title");
 
 // Selecting the inputs
-const editTitleInput = document.querySelector("#editTitle");
+const editLocationInput = document.querySelector("#editLocation"); //editTitleInput
 const editDesInput = document.querySelector("#editDescription");
 
 // Selecting the Btns
 const submitBtnEdit = document.querySelector(".submitBtnEdit");
 
-// ---------------------- Category Inputs options in Inventory ------------------
-const categoryInput = document.querySelector("#categoryInput");
+// ---------------------- Location Inputs options in Inventory ------------------
+const LocationInput = document.querySelector("#LocationInput");
 
-class CategoryUi {
+class LocationUi {
   constructor() {
     this.id = 0;
     cancelBtnEdit.addEventListener("click", (e) => {
       e.preventDefault();
-      this.closeCategoryModal();
+      this.closeLocationModal();
     });
 
-    categoryBack.addEventListener("click", (e) => {
-      if (e.target.classList.contains("EditCategorySection"))
-        this.closeCategoryModal();
+    LocationBack.addEventListener("click", (e) => {
+      if (e.target.classList.contains("EditLocationSection"))
+        this.closeLocationModal();
     });
 
     submitBtnEdit.addEventListener("click", (e) => {
@@ -39,57 +39,57 @@ class CategoryUi {
 
   setApp() {
     mainApp.innerHTML = `
-    <div class="categoryUi">
-        <div class="category__header">
+    <div class="LocationUi">
+        <div class="Location__header">
             <h1>Categories</h1>
-            <button class="addCategoryBtn">Add Category</button>
+            <button class="addLocationBtn">Add Location</button>
         </div>
-        <div class="category__items">
+        <div class="Location__items">
            
         </div>
     </div>
     `;
 
-    this.HTMLContainer = document.querySelector(".category__items");
+    this.HTMLContainer = document.querySelector(".Location__items");
     this.updateDOM();
-    // Selecting the add Category button on the main page
-    const addCategoryBtn = document.querySelector(".addCategoryBtn");
+    // Selecting the add Location button on the main page
+    const addLocationBtn = document.querySelector(".addLocationBtn");
 
-    addCategoryBtn.addEventListener("click", () => {
-      categoryModTitle.textContent = "Add Category"; // Updating the Modal Title
-      this.openCategoryModal();
+    addLocationBtn.addEventListener("click", () => {
+      LocationModTitle.textContent = "Add Location"; // Updating the Modal Title
+      this.openLocationModal();
     });
   }
 
-  openCategoryModal() {
+  openLocationModal() {
     // Opening the Modal
-    categoryModal.classList.remove("--hidden");
+    LocationModal.classList.remove("--hidden");
     this.clearInputs();
   }
 
-  closeCategoryModal() {
+  closeLocationModal() {
     // Closing the Modal
-    categoryModal.classList.add("--hidden");
+    LocationModal.classList.add("--hidden");
     this.clearInputs();
     this.id = 0;
   }
 
-  createHTML(category) {
+  createHTML(Location) {
     return `
-     <div class="category__item">
-        <div class="category__item__text">
-            <h2 class="title">${category.title}</h2>
-            <p class="description">${category.description}</p>
+     <div class="Location__item">
+        <div class="Location__item__text">
+            <h2 class="title">${Location.title}</h2>
+            <p class="description">${Location.description}</p>
         </div>
-        <div class="category__item__icons">
-            <svg class="icon editCategoryIcon" data-id=${category.id}>
+        <div class="Location__item__icons">
+            <svg class="icon editLocationIcon" data-id=${Location.id}>
                 <use xlink:href="../assets/images/sprite.svg#editIcon"></use>
             </svg>
             <img
                 src="../assets/images/deleteIcon.svg"
                 alt="delete Icon"
-                class="deleteBtnCategory"
-                data-id=${category.id}
+                class="deleteBtnLocation"
+                data-id=${Location.id}
             />
         </div>
     </div>`;
@@ -104,17 +104,17 @@ class CategoryUi {
 
     // checking for duplication
     if (this.id != 0) {
-      const allCategories = Storage.getCategories();
-      const otherCategories = allCategories.filter(
-        (category) => category.id != this.id
+      const allLocations = Storage.getLocations();
+      const otherLocations = allLocations.filter(
+        (Location) => Location.id != this.id
       );
-      const existed = otherCategories.find(
-        (category) =>
-          category.title.toLowerCase().trim() ==
+      const existed = otherLocations.find(
+        (Location) =>
+          Location.title.toLowerCase().trim() ==
           editTitleInput.value.toLowerCase().trim()
       );
       if (existed) {
-        alert("Category already Exist");
+        alert("Location already Exist");
         return -1;
       }
     }
@@ -132,36 +132,36 @@ class CategoryUi {
     this.updateDOM();
 
     // Closing the Modal
-    this.closeCategoryModal();
+    this.closeLocationModal();
   }
 
   updateDOM() {
-    // Creating html for each category
+    // Creating html for each Location
     let result = "";
-    const allCategories = Storage.getCategories();
-    allCategories.forEach((category) => {
-      result += this.createHTML(category);
+    const allLocations = Storage.getLocations();
+    allLocations.forEach((Location) => {
+      result += this.createHTML(Location);
     });
 
     this.HTMLContainer.innerHTML = result; // Updating the DOM
 
-    this.updateCategoryOptions();
+    this.updateLocationOptions();
 
     // Selecting the delete Icon
-    const deleteBtns = document.querySelectorAll(".deleteBtnCategory");
+    const deleteBtns = document.querySelectorAll(".deleteBtnLocation");
     deleteBtns.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const id = Number(e.target.dataset.id);
-        this.deleteCategory(id);
+        this.deleteLocation(id);
       });
     });
 
     // Selecting the edit Icon
-    const editBtns = document.querySelectorAll(".editCategoryIcon");
+    const editBtns = document.querySelectorAll(".editLocationIcon");
     editBtns.forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const id = Number(e.target.dataset.id);
-        this.editCategory(id);
+        this.editLocation(id);
       });
     });
   }
@@ -173,46 +173,46 @@ class CategoryUi {
     });
   }
 
-  deleteCategory(id) {
-    // Deleting the category
-    Storage.deleteCategory(id);
+  deleteLocation(id) {
+    // Deleting the Location
+    Storage.deleteLocation(id);
     this.updateDOM();
   }
 
-  editCategory(id) {
-    const allCategories = Storage.getCategories();
+  editLocation(id) {
+    const allLocations = Storage.getLocations();
 
-    const selectedCategory = allCategories.find(
-      (category) => category.id == id
+    const selectedLocation = allLocations.find(
+      (Location) => Location.id == id
     );
 
     // Setting the new id so we can change only this id
     this.id = id;
 
     // Update the title of the modal
-    categoryModTitle.textContent = "Edit Category";
+    LocationModTitle.textContent = "Edit Location";
 
     // Opening the Modal
-    this.openCategoryModal();
+    this.openLocationModal();
 
     // Updating the values
-    editTitleInput.value = selectedCategory.title;
-    editDesInput.value = selectedCategory.description;
+    editTitleInput.value = selectedLocation.title;
+    editDesInput.value = selectedLocation.description;
   }
 
-  updateCategoryOptions() {
-    // Updating the Options category in the Inventory
-    let result = `<option value="">Select product category</option>
-    <option value="no-cat">No Category</option>`;
+  updateLocationOptions() {
+    // Updating the Options Location in the Inventory
+    let result = `<option value="">Select product Location</option>
+    <option value="no-loc">No Location</option>`;
     // Getting all the value
-    const allCategories = Storage.getCategories();
-    allCategories.forEach((category) => {
-      result += `<option value=${category.id}>${category.title}</option>`;
+    const allLocations = Storage.getLocations();
+    allLocations.forEach((Location) => {
+      result += `<option value=${Location.id}>${Location.title}</option>`;
     });
 
     // Updating the DOM
-    categoryInput.innerHTML = result;
+    LocationInput.innerHTML = result;
   }
 }
 
-export default new CategoryUi();
+export default new LocationUi();
