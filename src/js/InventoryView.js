@@ -10,6 +10,7 @@ const ModalTitle = document.querySelector(".addProModal__title");
 // Selecting the inputs in the add Product Modal
 const productNameInput = document.querySelector(".productNameInput");
 const categoryInput = document.querySelector("#categoryInput");
+const locationInput = document.querySelector("#LocationInput");
 const productQuantityInput = document.querySelector(".productQuantityInput");
 const productPriceInput = document.querySelector(".productPriceInput");
 
@@ -72,6 +73,7 @@ class InventoryUi {
         <td>Product</td>
         <td>Quantity</td>
         <td>Price</td>
+        <td>Location</td>
         <td>Category</td>
         <td></td>
     </tr>    
@@ -109,6 +111,7 @@ class InventoryUi {
         <td>${prodcut.quantity}</td>
         <td>$${prodcut.price}</td>
         <td>${this.getCategoryName(prodcut.category)}</td>
+        <td>${this.getLocationName(prodcut.location)}</td>
         <td class="editTableSection">
             <div class="table__icons">
             <div class="editIcon" data-id=${prodcut.id}>
@@ -137,6 +140,15 @@ class InventoryUi {
     return "No-Category";
   }
 
+  getLocationName(id) {
+    const allLocations = Storage.getLocations();
+    const existed = allLocations.find((location) => location.id == id);
+    if (existed) {
+      return existed.title;
+    }
+    return "No-Location";
+  }
+
   openProductModal() {
     addProModal.classList.remove("--hidden");
     this.clearInputsField();
@@ -154,6 +166,7 @@ class InventoryUi {
       productPriceInput,
       productQuantityInput,
       categoryInput,
+      locationInput,
       productNameInput,
     ].forEach((input) => (input.value = ""));
   }
@@ -163,6 +176,7 @@ class InventoryUi {
     if (
       !productNameInput.value ||
       !categoryInput.value ||
+      !locationInput.value ||
       !productQuantityInput.value ||
       !productPriceInput.value
     ) {
@@ -201,6 +215,7 @@ class InventoryUi {
       id: this.id,
       title: productNameInput.value.trim(),
       category: categoryInput.value,
+      location: locationInput.value,
       quantity: Number(productQuantityInput.value),
       price: Number(productPriceInput.value),
     });
@@ -239,6 +254,7 @@ class InventoryUi {
     // Updating the value for each input
     productNameInput.value = selectedProduct.title;
     categoryInput.value = selectedProduct.category;
+    locationInput.value = selectedProduct.location;
     productQuantityInput.value = selectedProduct.quantity;
     productPriceInput.value = selectedProduct.price;
   }
