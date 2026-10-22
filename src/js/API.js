@@ -46,6 +46,46 @@ class Storage {
     localStorage.setItem("Inventorycategories", JSON.stringify(allCategories));
   }
 
+  getLocations() {
+    // Getting all of the locations
+    const allData =
+      JSON.parse(localStorage.getItem("Inventorylocations")) || [];
+
+    this.sortArray(allData); // Sorting the Categories (newest first by default)
+    return allData;
+  }
+
+  saveLocations(data) {
+    // Getting all of the categories
+    const allLocations = this.getLocations();
+    if (data.id != 0) {
+      // Finding the category that already exists
+      const existed = allLocations.find((location) => location.id == data.id);
+
+      existed.title = data.title;
+      existed.description = data.description;
+      existed.updated = new Date().toISOString();
+    } else {
+      // Finding if the data already exist
+      const existed = allLocations.find(
+        (Location) =>
+          location.title.toLowerCase().trim() == data.title.toLowerCase().trim()
+      );
+
+      if (existed) {
+        existed.title = data.title;
+        existed.description = data.description;
+        existed.updated = new Date().toISOString();
+      } else {
+        data.id = new Date().getTime();
+        data.updated = new Date().toISOString();
+
+        allLocations.push(data);
+      }
+    }
+    localStorage.setItem("Inventorylocations", JSON.stringify(allLocations));
+  }
+  //endnew
   saveProduct(data) {
     // Getting all of the Data
     const allProducts = this.getProducts();
