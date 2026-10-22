@@ -745,6 +745,126 @@ img {
   }
 }
 
+/* ------------------------------ Location Section --------------------------------------- */
+
+.LocationUi {
+  background-color: var(--color-background);
+  width: 100%;
+  padding: 2rem;
+  border-radius: 7px;
+}
+
+.Location__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.LocationUi h1 {
+  font-size: 1.3rem;
+}
+
+.addLocationBtn {
+  font-size: 0.6rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-primary-color);
+  border: 0 solid;
+  color: white;
+  border-radius: 5px;
+}
+
+.Location__item {
+  margin-top: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Location__item p {
+  font-size: 0.9rem;
+}
+
+.deleteBtnLocation {
+  margin-right: 0;
+  margin-left: 5px;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.deleteBtnLocation:hover {
+  filter: invert(29%) sepia(94%) saturate(1395%) hue-rotate(340deg)
+    brightness(92%) contrast(89%);
+}
+
+.Location__item__text h2 {
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+}
+
+.Location__item__text .description {
+  font-size: 0.8rem;
+}
+
+.editLocationIcon {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.editLocationIcon svg {
+  pointer-events: none;
+}
+
+.Location__item__icons {
+  display: flex;
+  align-self: center;
+}
+
+.editLocationIcon:hover {
+  filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
+    brightness(99%) contrast(90%);
+}
+
+@media screen and (min-width: 1024px) {
+  .editLocationIcon,
+  .deleteBtnLocation {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+
+  .LocationUi h1 {
+    font-weight: 600;
+    font-size: 1.8rem;
+  }
+
+  .Location__item__text h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .Location__item__text .description {
+    font-size: 1rem;
+  }
+
+  .addLocationBtn {
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    background-color: var(--color-primary-color);
+    border: 0 solid;
+    color: white;
+    border-radius: 5px;
+  }
+}
+
 /* Edit Section */
 
 .EditCategorySection {
