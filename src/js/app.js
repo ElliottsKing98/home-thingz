@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
   app.addEventListeners();
 
   CategoryUi.updateCategoryOptions();
-  LocationUi.updateLocationOptions();
   DashboardUi.setApp(); // Updating the ui with the selected default page
 });
 
