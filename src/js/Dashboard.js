@@ -31,7 +31,7 @@ class DashboardUi {
  
 
         <div class="dashboardUi__main__items">
-            <img src="../assets/images/Categoriescolor.svg" alt="category" />
+            <img src="../assets/images/Categoriescolor.svg" alt="Category" />
             <p class="dashboardUi__notAvailable">${this.totalCategories()}</p>
             <p>Total Categories</p>
         </div>
@@ -57,7 +57,7 @@ class DashboardUi {
     return totalPrice.toLocaleString();
   }
 
-  // Calculate total categories
+  // Calculate total Categories
   totalCategories() {
     const allCategories = Storage.getCategories();
     const total = allCategories.length;
