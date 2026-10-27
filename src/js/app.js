@@ -1,13 +1,13 @@
 import DashboardUi from "./Dashboard.js";
 import InventoryUi from "./InventoryView.js";
-import CategoryUi from "./categoryView.js";
-import LocationUi from "./locationView.js";
+import CategoryUi from "./CategoryView.js";
+import LocationUi from "./LocationView.js";
 
 // -------------------------- Sidebar Btns -----------------------------
 const dashboardBtns = [...document.querySelectorAll(".sideBar__dashboard")];
 const inventoryBtns = [...document.querySelectorAll(".sideBar__inventory")];
-const categoryBtns = [...document.querySelectorAll(".sideBar__categories")];
-const locationBtns = [...document.querySelectorAll(".sideBar__locations")];
+const CategoryBtns = [...document.querySelectorAll(".sideBar__Categories")];
+const LocationBtns = [...document.querySelectorAll(".sideBar__Locations")];
 
 // --------------------------  Sidebar-Menu  ---------------------------------
 const menuToggle = document.querySelector(".menu-toggle");
@@ -41,15 +41,15 @@ class App {
         this.hideMenu();
       });
     });
-    categoryBtns.forEach((btn) => {
+    CategoryBtns.forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        this.categoryBtnLogic(e);
+        this.CategoryBtnLogic(e);
         this.hideMenu();
       });
     });
-    locationBtns.forEach((btn) => {
+    LocationBtns.forEach((btn) => {
       btn.addEventListener("click", (e) => {
-        this.locationBtnLogic(e);
+        this.LocationBtnLogic(e);
         this.hideMenu();
       });
     });
@@ -88,14 +88,14 @@ class App {
     event.target.classList.add("--selectedBtnUi"); // Adding the selected (style) to the dashboard button
   }
 
-  categoryBtnLogic(event) {
+  CategoryBtnLogic(event) {
     CategoryUi.setApp(); // Updating the ui with the Inventory page
     searchBar.value = ""; // Reseting SearchBar
     this.removeCurrentSelectedBtn(); // Removing all previous selected button
     event.target.classList.add("--selectedBtnUi"); // Adding the selected (style) to the dashboard button
   }
 
-  locationBtnLogic(event) {
+  LocationBtnLogic(event) {
     LocationUi.setApp(); // Updating the ui with the Inventory page
     searchBar.value = ""; // Reseting SearchBar
     this.removeCurrentSelectedBtn(); // Removing all previous selected button
@@ -114,7 +114,7 @@ class App {
 
   removeCurrentSelectedBtn() {
     // This method will remove all the selected btns in the sidebar!
-    [dashboardBtns, inventoryBtns, categoryBtns, locationBtns].forEach((btns) => {
+    [dashboardBtns, inventoryBtns, CategoryBtns, LocationBtns].forEach((btns) => {
       btns.forEach((btn) => {
         // Removing Btn selected class
         btn.classList.remove("--selectedBtnUi");
