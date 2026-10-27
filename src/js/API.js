@@ -15,6 +15,15 @@ class Storage {
     return allData;
   }
 
+  getLocations() {
+    // Getting all of the locations
+    const allData =
+      JSON.parse(localStorage.getItem("Inventorylocations")) || [];
+
+    this.sortArray(allData); // Sorting the Categories (newest first by default)
+    return allData;
+  }
+
   saveCategorie(data) {
     // Getting all of the categories
     const allCategories = this.getCategories();
@@ -79,6 +88,39 @@ class Storage {
     localStorage.setItem("InventoryProducts", JSON.stringify(allProducts));
   }
 
+  saveLocation(data) {
+    // Getting all of the Data
+    const allLocation = this.getLocations();
+    if (data.id != 0) {
+      const existed = allLocations.find((location) => location.id == data.id); // Finding the data that already exist
+
+      existed.title = data.title;
+      existed.category = data.category;
+      existed.quantity = data.quantity;
+      existed.price = data.price;
+      existed.updated = new Date().toISOString();
+    } else {
+      // Finding if the data already exist
+      const existed = allLocations.find(
+        (location) =>
+          location.title.toLowerCase().trim() == data.title.toLowerCase().trim()
+      );
+
+      if (existed) {
+        existed.title = data.title;
+        existed.category = data.category;
+        existed.quantity = data.quantity;
+        existed.price = data.price;
+        existed.updated = new Date().toISOString();
+      } else {
+        data.id = new Date().getTime();
+        data.updated = new Date().toISOString();
+        allLocations.push(data);
+      }
+    }
+    localStorage.setItem("InventoryLocations", JSON.stringify(allLocations));
+  }
+
   sortArray(array) {
     // Sorting array by newest
     array.sort((a, b) => (new Date(a.updated) < new Date(b.updated) ? 1 : -1));
@@ -93,18 +135,22 @@ class Storage {
     localStorage.setItem("InventoryProducts", JSON.stringify(filteredProducts));
   }
 
+  deleteLocation(id) {
+    // Getting all the Products
+    const allLocations = this.getLocations();
+    // Filtering the Products
+    const filteredProducts = allLocations.filter((location) => location.id != id);
+    // Update the Storage
+    localStorage.setItem("InventoryLocations", JSON.stringify(filteredProducts));
+  }
+  
   deleteCategory(id) {
     // Getting all the Products
     const allCategories = this.getCategories();
     // Filtering the Products
-    const filteredProducts = allCategories.filter(
-      (category) => category.id != id
-    );
+    const filteredProducts = allCategories.filter((category) => category.id != id);
     // Update the Storage
-    localStorage.setItem(
-      "Inventorycategories",
-      JSON.stringify(filteredProducts)
-    );
+    localStorage.setItem("Inventorycategories", JSON.stringify(filteredProducts));
   }
 }
 
