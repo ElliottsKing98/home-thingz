@@ -3,10 +3,10 @@ import Storage from "./API.js";
 const mainApp = document.querySelector(".main");
 
 // ------------------------- Selecting Category Modal --------------------------
-const categoryModal = document.querySelector(".EditCategorySection");
-const categoryBack = document.querySelector(".EditCategorySection");
+const CategoryModal = document.querySelector(".EditCategorySection");
+const CategoryBack = document.querySelector(".EditCategorySection");
 const cancelBtnEdit = document.querySelector(".cancelBtnEdit");
-const categoryModTitle = document.querySelector(".EditCatMod__title");
+const CategoryModTitle = document.querySelector(".EditCatMod__title");
 
 // Selecting the inputs
 const editTitleInput = document.querySelector("#editTitle");
@@ -16,7 +16,7 @@ const editDesInput = document.querySelector("#editDescription");
 const submitBtnEdit = document.querySelector(".submitBtnEdit");
 
 // ---------------------- Category Inputs options in Inventory ------------------
-const categoryInput = document.querySelector("#categoryInput");
+const CategoryInput = document.querySelector("#CategoryInput");
 
 class CategoryUi {
   constructor() {
@@ -26,7 +26,7 @@ class CategoryUi {
       this.closeCategoryModal();
     });
 
-    categoryBack.addEventListener("click", (e) => {
+    CategoryBack.addEventListener("click", (e) => {
       if (e.target.classList.contains("EditCategorySection"))
         this.closeCategoryModal();
     });
@@ -39,57 +39,57 @@ class CategoryUi {
 
   setApp() {
     mainApp.innerHTML = `
-    <div class="categoryUi">
-        <div class="category__header">
+    <div class="CategoryUi">
+        <div class="Category__header">
             <h1>Categories</h1>
             <button class="addCategoryBtn">Add Category</button>
         </div>
-        <div class="category__items">
+        <div class="Category__items">
            
         </div>
     </div>
     `;
 
-    this.HTMLContainer = document.querySelector(".category__items");
+    this.HTMLContainer = document.querySelector(".Category__items");
     this.updateDOM();
     // Selecting the add Category button on the main page
     const addCategoryBtn = document.querySelector(".addCategoryBtn");
 
     addCategoryBtn.addEventListener("click", () => {
-      categoryModTitle.textContent = "Add Category"; // Updating the Modal Title
+      CategoryModTitle.textContent = "Add Category"; // Updating the Modal Title
       this.openCategoryModal();
     });
   }
 
   openCategoryModal() {
     // Opening the Modal
-    categoryModal.classList.remove("--hidden");
+    CategoryModal.classList.remove("--hidden");
     this.clearInputs();
   }
 
   closeCategoryModal() {
     // Closing the Modal
-    categoryModal.classList.add("--hidden");
+    CategoryModal.classList.add("--hidden");
     this.clearInputs();
     this.id = 0;
   }
 
-  createHTML(category) {
+  createHTML(Category) {
     return `
-     <div class="category__item">
-        <div class="category__item__text">
-            <h2 class="title">${category.title}</h2>
-            <p class="description">${category.description}</p>
+     <div class="Category__item">
+        <div class="Category__item__text">
+            <h2 class="title">${Category.title}</h2>
+            <p class="description">${Category.description}</p>
         </div>
-        <div class="category__item__icons">
-            <svg class="icon editCategoryIcon" data-id=${category.id}>
+        <div class="Category__item__icons">
+            <svg class="icon editCategoryIcon" data-id=${Category.id}>
                 <use xlink:href="../assets/images/sprite.svg#editIcon"></use>
             </svg>
             <img
                 src="../assets/images/deleteIcon.svg"
                 alt="delete Icon"
                 class="deleteBtnCategory"
-                data-id=${category.id}
+                data-id=${Category.id}
             />
         </div>
     </div>`;
@@ -106,11 +106,11 @@ class CategoryUi {
     if (this.id != 0) {
       const allCategories = Storage.getCategories();
       const otherCategories = allCategories.filter(
-        (category) => category.id != this.id
+        (Category) => Category.id != this.id
       );
       const existed = otherCategories.find(
-        (category) =>
-          category.title.toLowerCase().trim() ==
+        (Category) =>
+          Category.title.toLowerCase().trim() ==
           editTitleInput.value.toLowerCase().trim()
       );
       if (existed) {
@@ -136,11 +136,11 @@ class CategoryUi {
   }
 
   updateDOM() {
-    // Creating html for each category
+    // Creating html for each Category
     let result = "";
     const allCategories = Storage.getCategories();
-    allCategories.forEach((category) => {
-      result += this.createHTML(category);
+    allCategories.forEach((Category) => {
+      result += this.createHTML(Category);
     });
 
     this.HTMLContainer.innerHTML = result; // Updating the DOM
@@ -174,7 +174,7 @@ class CategoryUi {
   }
 
   deleteCategory(id) {
-    // Deleting the category
+    // Deleting the Category
     Storage.deleteCategory(id);
     this.updateDOM();
   }
@@ -183,14 +183,14 @@ class CategoryUi {
     const allCategories = Storage.getCategories();
 
     const selectedCategory = allCategories.find(
-      (category) => category.id == id
+      (Category) => Category.id == id
     );
 
     // Setting the new id so we can change only this id
     this.id = id;
 
     // Update the title of the modal
-    categoryModTitle.textContent = "Edit Category";
+    CategoryModTitle.textContent = "Edit Category";
 
     // Opening the Modal
     this.openCategoryModal();
@@ -201,17 +201,17 @@ class CategoryUi {
   }
 
   updateCategoryOptions() {
-    // Updating the Options category in the Inventory
-    let result = `<option value="">Select product category</option>
+    // Updating the Options Category in the Inventory
+    let result = `<option value="">Select product Category</option>
     <option value="no-cat">No Category</option>`;
     // Getting all the value
     const allCategories = Storage.getCategories();
-    allCategories.forEach((category) => {
-      result += `<option value=${category.id}>${category.title}</option>`;
+    allCategories.forEach((Category) => {
+      result += `<option value=${Category.id}>${Category.title}</option>`;
     });
 
     // Updating the DOM
-    categoryInput.innerHTML = result;
+    CategoryInput.innerHTML = result;
   }
 }
 
