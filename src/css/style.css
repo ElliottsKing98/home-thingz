@@ -627,20 +627,20 @@ img {
 }
 /* ------------------------------ Category Section --------------------------------------- */
 
-.categoryUi {
+.CategoryUi {
   background-color: var(--color-background);
   width: 100%;
   padding: 2rem;
   border-radius: 7px;
 }
 
-.category__header {
+.Category__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.categoryUi h1 {
+.CategoryUi h1 {
   font-size: 1.3rem;
 }
 
@@ -654,14 +654,14 @@ img {
   border-radius: 5px;
 }
 
-.category__item {
+.Category__item {
   margin-top: 1.4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.category__item p {
+.Category__item p {
   font-size: 0.9rem;
 }
 
@@ -679,12 +679,12 @@ img {
     brightness(92%) contrast(89%);
 }
 
-.category__item__text h2 {
+.Category__item__text h2 {
   font-size: 0.8rem;
   margin-bottom: 0.3rem;
 }
 
-.category__item__text .description {
+.Category__item__text .description {
   font-size: 0.8rem;
 }
 
@@ -700,7 +700,7 @@ img {
   pointer-events: none;
 }
 
-.category__item__icons {
+.Category__item__icons {
   display: flex;
   align-self: center;
 }
@@ -720,17 +720,17 @@ img {
     cursor: pointer;
   }
 
-  .categoryUi h1 {
+  .CategoryUi h1 {
     font-weight: 600;
     font-size: 1.8rem;
   }
 
-  .category__item__text h2 {
+  .Category__item__text h2 {
     font-size: 1.3rem;
     margin-bottom: 0.4rem;
   }
 
-  .category__item__text .description {
+  .Category__item__text .description {
     font-size: 1rem;
   }
 
@@ -819,26 +819,26 @@ img {
   }
 }
 
-/* ------------------------------ location Section --------------------------------------- */
+/* ------------------------------ Location Section --------------------------------------- */
 
-.locationUi {
+.LocationUi {
   background-color: var(--color-background);
   width: 100%;
   padding: 2rem;
   border-radius: 7px;
 }
 
-.location__header {
+.Location__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.locationUi h1 {
+.LocationUi h1 {
   font-size: 1.3rem;
 }
 
-.addlocationBtn {
+.addLocationBtn {
   font-size: 0.6rem;
   cursor: pointer;
   padding: 0.5rem 1rem;
@@ -848,18 +848,18 @@ img {
   border-radius: 5px;
 }
 
-.location__item {
+.Location__item {
   margin-top: 1.4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.location__item p {
+.Location__item p {
   font-size: 0.9rem;
 }
 
-.deleteBtnlocation {
+.deleteBtnLocation {
   margin-right: 0;
   margin-left: 5px;
   width: 25px;
@@ -868,21 +868,21 @@ img {
   cursor: pointer;
 }
 
-.deleteBtnlocation:hover {
+.deleteBtnLocation:hover {
   filter: invert(29%) sepia(94%) saturate(1395%) hue-rotate(340deg)
     brightness(92%) contrast(89%);
 }
 
-.location__item__text h2 {
+.Location__item__text h2 {
   font-size: 0.8rem;
   margin-bottom: 0.3rem;
 }
 
-.location__item__text .description {
+.Location__item__text .description {
   font-size: 0.8rem;
 }
 
-.editlocationIcon {
+.editLocationIcon {
   width: 25px;
   height: 25px;
   padding: 5px;
@@ -890,23 +890,23 @@ img {
   cursor: pointer;
 }
 
-.editlocationIcon svg {
+.editLocationIcon svg {
   pointer-events: none;
 }
 
-.location__item__icons {
+.Location__item__icons {
   display: flex;
   align-self: center;
 }
 
-.editlocationIcon:hover {
+.editLocationIcon:hover {
   filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
     brightness(99%) contrast(90%);
 }
 
 @media screen and (min-width: 1024px) {
-  .editlocationIcon,
-  .deleteBtnlocation {
+  .editLocationIcon,
+  .deleteBtnLocation {
     width: 30px;
     height: 30px;
     padding: 5px;
@@ -914,21 +914,21 @@ img {
     cursor: pointer;
   }
 
-  .locationUi h1 {
+  .LocationUi h1 {
     font-weight: 600;
     font-size: 1.8rem;
   }
 
-  .location__item__text h2 {
+  .Location__item__text h2 {
     font-size: 1.3rem;
     margin-bottom: 0.4rem;
   }
 
-  .location__item__text .description {
+  .Location__item__text .description {
     font-size: 1rem;
   }
 
-  .addlocationBtn {
+  .addLocationBtn {
     font-size: 0.9rem;
     cursor: pointer;
     padding: 1rem 2rem;
@@ -941,7 +941,7 @@ img {
 
 /* Edit Section */
 
-.EditlocationSection {
+.EditLocationSection {
   position: fixed;
   background-color: rgba(0, 0, 0, 0.192);
   backdrop-filter: blur(2px);
