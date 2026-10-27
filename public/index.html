@@ -161,6 +161,13 @@
               </select>
             </div>
             <div class="addProModal__form__inputs">
+              <p>Location</p>
+              <select name="location" id="locationInput">
+                <option value="">Select product location</option>
+                <option value="no-loc">No Location</option>
+              </select>
+            </div>
+            <div class="addProModal__form__inputs">
               <p>Quantity</p>
               <input
                 type="number"
@@ -236,7 +243,32 @@
           </form>
         </div>
       </div>
+      <!-------- New ---------------->
+      <div class="EditLocationSection --hidden">
+        <div class="EditLocMod">
+          <h1 class="EditLocMod__title">Edit Product</h1>
+          <form class="EditLocMod__form">
+            <input
+              type="text"
+              name="editTitle"
+              id="editTitle"
+              placeholder="Edit Title"
+            />
+            <input
+              type="text"
+              name="editDescription"
+              id="editDescription"
+              placeholder="Edit Description"
+            />
 
+            <div class="EditLocMod__btns">
+              <button class="cancelBtnEdit">Discard</button>
+              <button class="submitBtnEdit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-------- End New ---------------->
       <!--------------------------  Dashboard View(Ui)   ------------------------------->
       <!-- <div class="dashboardUi">
           <div class="dashboardUi__header">
