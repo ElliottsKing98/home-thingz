@@ -9,8 +9,8 @@ const ModalTitle = document.querySelector(".addProModal__title");
 
 // Selecting the inputs in the add Product Modal
 const productNameInput = document.querySelector(".productNameInput");
-const categoryInput = document.querySelector("#categoryInput");
-const locationInput = document.querySelector("#locationInput");
+const CategoryInput = document.querySelector("#CategoryInput");
+const LocationInput = document.querySelector("#LocationInput");
 const productQuantityInput = document.querySelector(".productQuantityInput");
 const productPriceInput = document.querySelector(".productPriceInput");
 
@@ -110,8 +110,8 @@ class InventoryUi {
         <td>${prodcut.title}</td>
         <td>${prodcut.quantity}</td>
         <td>$${prodcut.price}</td>
-        <td>${this.getCategoryName(prodcut.category)}</td>
-        <td>${this.getLocationName(prodcut.location)}</td>
+        <td>${this.getCategoryName(prodcut.Category)}</td>
+        <td>${this.getLocationName(prodcut.Location)}</td>
         <td class="editTableSection">
             <div class="table__icons">
             <div class="editIcon" data-id=${prodcut.id}>
@@ -133,7 +133,7 @@ class InventoryUi {
 
   getCategoryName(id) {
     const allCategories = Storage.getCategories();
-    const existed = allCategories.find((category) => category.id == id);
+    const existed = allCategories.find((Category) => Category.id == id);
     if (existed) {
       return existed.title;
     }
@@ -142,7 +142,7 @@ class InventoryUi {
   
   getLocationName(id) {
     const allLocations = Storage.getLocations();
-    const existed = allLocations.find((location) => location.id == id);
+    const existed = allLocations.find((Location) => Location.id == id);
     if (existed) {
       return existed.title;
     }
@@ -165,9 +165,9 @@ class InventoryUi {
     [
       productPriceInput,
       productQuantityInput,
-      categoryInput,
+      CategoryInput,
       productNameInput,
-      locationInput,
+      LocationInput,
     ].forEach((input) => (input.value = ""));
   }
 
@@ -175,8 +175,8 @@ class InventoryUi {
     // Checking of the field are empty or not
     if (
       !productNameInput.value ||
-      !categoryInput.value ||
-      !locationInput.value ||
+      !CategoryInput.value ||
+      !LocationInput.value ||
       !productQuantityInput.value ||
       !productPriceInput.value
     ) {
@@ -214,10 +214,10 @@ class InventoryUi {
     Storage.saveProduct({
       id: this.id,
       title: productNameInput.value.trim(),
-      category: categoryInput.value,
+      Category: CategoryInput.value,
       quantity: Number(productQuantityInput.value),
       price: Number(productPriceInput.value),
-      location: locationInput.value,
+      Location: LocationInput.value,
     });
 
     this.id = 0;
@@ -253,10 +253,10 @@ class InventoryUi {
     ProModalAddBtn.textContent = "Submit Edit";
     // Updating the value for each input
     productNameInput.value = selectedProduct.title;
-    categoryInput.value = selectedProduct.category;
+    CategoryInput.value = selectedProduct.Category;
     productQuantityInput.value = selectedProduct.quantity;
     productPriceInput.value = selectedProduct.price;
-    locationInput.value = selectedProduct.location;
+    LocationInput.value = selectedProduct.Location;
   }
 
   seachLogic(inputValue) {
