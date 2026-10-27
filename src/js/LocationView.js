@@ -2,11 +2,11 @@ import Storage from "./API.js";
 
 const mainApp = document.querySelector(".main");
 
-// ------------------------- Selecting location Modal --------------------------
-const locationModal = document.querySelector(".EditLocationSection");
-const locationBack = document.querySelector(".EditLocationSection");
+// ------------------------- Selecting Location Modal --------------------------
+const LocationModal = document.querySelector(".EditLocationSection");
+const LocationBack = document.querySelector(".EditLocationSection");
 const cancelBtnEdit = document.querySelector(".cancelBtnEdit");
-const locationModTitle = document.querySelector(".EditLocMod__title");
+const LocationModTitle = document.querySelector(".EditLocMod__title");
 
 // Selecting the inputs
 const editTitleInput = document.querySelector("#editTitle");
@@ -16,7 +16,7 @@ const editDesInput = document.querySelector("#editDescription");
 const submitBtnEdit = document.querySelector(".submitBtnEdit");
 
 // ---------------------- Location Inputs options in Inventory ------------------
-const locationInput = document.querySelector("#locationInput");
+const LocationInput = document.querySelector("#LocationInput");
 
 class LocationUi {
   constructor() {
@@ -26,7 +26,7 @@ class LocationUi {
       this.closeLocationModal();
     });
 
-    locationBack.addEventListener("click", (e) => {
+    LocationBack.addEventListener("click", (e) => {
       if (e.target.classList.contains("EditLocationSection"))
         this.closeLocationModal();
     });
@@ -39,57 +39,57 @@ class LocationUi {
 
   setApp() {
     mainApp.innerHTML = `
-    <div class="locationUi">
-        <div class="location__header">
+    <div class="LocationUi">
+        <div class="Location__header">
             <h1>Locations</h1>
-            <button class="addlocationBtn">Add Location</button>
+            <button class="addLocationBtn">Add Location</button>
         </div>
-        <div class="location__items">
+        <div class="Location__items">
            
         </div>
     </div>
     `;
 
-    this.HTMLContainer = document.querySelector(".location__items");
+    this.HTMLContainer = document.querySelector(".Location__items");
     this.updateDOM();
     // Selecting the add Location button on the main page
     const addLocationBtn = document.querySelector(".addLocationBtn");
 
     addLocationBtn.addEventListener("click", () => {
-      locationModTitle.textContent = "Add Location"; // Updating the Modal Title
+      LocationModTitle.textContent = "Add Location"; // Updating the Modal Title
       this.openLocationModal();
     });
   }
 
   openLocationModal() {
     // Opening the Modal
-    locationModal.classList.remove("--hidden");
+    LocationModal.classList.remove("--hidden");
     this.clearInputs();
   }
 
   closeLocationModal() {
     // Closing the Modal
-    locationModal.classList.add("--hidden");
+    LocationModal.classList.add("--hidden");
     this.clearInputs();
     this.id = 0;
   }
 
-  createHTML(location) {
+  createHTML(Location) {
     return `
-     <div class="location__item">
-        <div class="location__item__text">
-            <h2 class="title">${location.title}</h2>
-            <p class="description">${location.description}</p>
+     <div class="Location__item">
+        <div class="Location__item__text">
+            <h2 class="title">${Location.title}</h2>
+            <p class="description">${Location.description}</p>
         </div>
-        <div class="location__item__icons">
-            <svg class="icon editLocationIcon" data-id=${location.id}>
+        <div class="Location__item__icons">
+            <svg class="icon editLocationIcon" data-id=${Location.id}>
                 <use xlink:href="../assets/images/sprite.svg#editIcon"></use>
             </svg>
             <img
                 src="../assets/images/deleteIcon.svg"
                 alt="delete Icon"
                 class="deleteBtnLocation"
-                data-id=${location.id}
+                data-id=${Location.id}
             />
         </div>
     </div>`;
@@ -106,11 +106,11 @@ class LocationUi {
     if (this.id != 0) {
       const allLocations = Storage.getLocations();
       const otherLocations = allLocations.filter(
-        (location) => location.id != this.id
+        (Location) => Location.id != this.id
       );
       const existed = otherLocations.find(
-        (location) =>
-          location.title.toLowerCase().trim() ==
+        (Location) =>
+          Location.title.toLowerCase().trim() ==
           editTitleInput.value.toLowerCase().trim()
       );
       if (existed) {
@@ -119,7 +119,7 @@ class LocationUi {
       }
     }
 
-    // Saving the data to localstorage
+    // Saving the data to Localstorage
     Storage.saveLocation({
       id: this.id,
       title: editTitleInput.value,
@@ -136,11 +136,11 @@ class LocationUi {
   }
 
   updateDOM() {
-    // Creating html for each location
+    // Creating html for each Location
     let result = "";
     const allLocations = Storage.getLocations();
-    allLocations.forEach((location) => {
-      result += this.createHTML(location);
+    allLocations.forEach((Location) => {
+      result += this.createHTML(Location);
     });
 
     this.HTMLContainer.innerHTML = result; // Updating the DOM
@@ -174,7 +174,7 @@ class LocationUi {
   }
 
   deleteLocation(id) {
-    // Deleting the location
+    // Deleting the Location
     Storage.deleteLocation(id);
     this.updateDOM();
   }
@@ -183,14 +183,14 @@ class LocationUi {
     const allLocations = Storage.getLocations();
 
     const selectedLocation = allLocations.find(
-      (location) => location.id == id
+      (Location) => Location.id == id
     );
 
     // Setting the new id so we can change only this id
     this.id = id;
 
     // Update the title of the modal
-    locationModTitle.textContent = "Edit Location";
+    LocationModTitle.textContent = "Edit Location";
 
     // Opening the Modal
     this.openLocationModal();
@@ -201,17 +201,17 @@ class LocationUi {
   }
 
   updateLocationOptions() {
-    // Updating the Options location in the Inventory
-    let result = `<option value="">Select product location</option>
-    <option value="no-loc">No Location</option>`;
+    // Updating the Options Location in the Inventory
+    let result = `<option value="">Select product Location</option>
+    <option value="no-Loc">No Location</option>`;
     // Getting all the value
     const allLocations = Storage.getLocations();
-    allLocations.forEach((location) => {
-      result += `<option value=${location.id}>${location.title}</option>`;
+    allLocations.forEach((Location) => {
+      result += `<option value=${Location.id}>${Location.title}</option>`;
     });
 
     // Updating the DOM
-    locationInput.innerHTML = result;
+    LocationInput.innerHTML = result;
   }
 }
 
