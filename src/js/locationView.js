@@ -42,7 +42,7 @@ class LocationUi {
     <div class="locationUi">
         <div class="location__header">
             <h1>Locations</h1>
-            <button class="addLocationBtn">Add Location</button>
+            <button class="addlocationBtn">Add Location</button>
         </div>
         <div class="location__items">
            
@@ -203,7 +203,7 @@ class LocationUi {
   updateLocationOptions() {
     // Updating the Options location in the Inventory
     let result = `<option value="">Select product location</option>
-    <option value="no-cat">No Location</option>`;
+    <option value="no-loc">No Location</option>`;
     // Getting all the value
     const allLocations = Storage.getLocations();
     allLocations.forEach((location) => {
