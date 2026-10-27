@@ -819,6 +819,200 @@ img {
   }
 }
 
+/* ------------------------------ location Section --------------------------------------- */
+
+.locationUi {
+  background-color: var(--color-background);
+  width: 100%;
+  padding: 2rem;
+  border-radius: 7px;
+}
+
+.location__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.locationUi h1 {
+  font-size: 1.3rem;
+}
+
+.addlocationBtn {
+  font-size: 0.6rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-primary-color);
+  border: 0 solid;
+  color: white;
+  border-radius: 5px;
+}
+
+.location__item {
+  margin-top: 1.4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location__item p {
+  font-size: 0.9rem;
+}
+
+.deleteBtnlocation {
+  margin-right: 0;
+  margin-left: 5px;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.deleteBtnlocation:hover {
+  filter: invert(29%) sepia(94%) saturate(1395%) hue-rotate(340deg)
+    brightness(92%) contrast(89%);
+}
+
+.location__item__text h2 {
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+}
+
+.location__item__text .description {
+  font-size: 0.8rem;
+}
+
+.editlocationIcon {
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.editlocationIcon svg {
+  pointer-events: none;
+}
+
+.location__item__icons {
+  display: flex;
+  align-self: center;
+}
+
+.editlocationIcon:hover {
+  filter: invert(39%) sepia(62%) saturate(6335%) hue-rotate(207deg)
+    brightness(99%) contrast(90%);
+}
+
+@media screen and (min-width: 1024px) {
+  .editlocationIcon,
+  .deleteBtnlocation {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+
+  .locationUi h1 {
+    font-weight: 600;
+    font-size: 1.8rem;
+  }
+
+  .location__item__text h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .location__item__text .description {
+    font-size: 1rem;
+  }
+
+  .addlocationBtn {
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    background-color: var(--color-primary-color);
+    border: 0 solid;
+    color: white;
+    border-radius: 5px;
+  }
+}
+
+/* Edit Section */
+
+.EditlocationSection {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.192);
+  backdrop-filter: blur(2px);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 4;
+}
+
+.EditLocMod__title {
+  font-size: 1.2rem;
+}
+
+.EditLocMod {
+  padding: 1rem;
+  background-color: white;
+  width: 70%;
+  margin: 0 auto;
+  position: relative;
+  top: 180px;
+  border-radius: 8px;
+}
+
+.EditLocMod__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.EditLocMod__form input {
+  border: 1px solid var(--color-background-grey);
+  border-radius: 8px;
+  padding: 1rem;
+  width: 100%;
+  outline: none;
+  margin-top: 1rem;
+}
+
+.EditLocMod__btns {
+  margin-top: 1.5rem;
+  align-self: flex-end;
+}
+
+.EditLocMod__btns button {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  outline: none;
+  border: 0 solid;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.submitBtnEdit {
+  color: white;
+  background-color: var(--color-primary-color);
+}
+
+@media screen and (min-width: 1024px) {
+  .EditLocMod__form input {
+    width: 100%;
+  }
+  .EditLocMod {
+    padding: 1.5rem;
+    width: 700px;
+  }
+  .EditLocMod__btns button {
+    font-size: 1rem;
+    padding: 0.7rem 1rem;
+  }
+}
+
 /* ---------------------------------- dashboardUi ----------------------------------- */
 .dashboardUi {
   background-color: var(--color-background);
