@@ -7,29 +7,29 @@ class Storage {
   }
 
   getCategories() {
-    // Getting all of the categories
+    // Getting all of the Categories
     const allData =
-      JSON.parse(localStorage.getItem("Inventorycategories")) || [];
+      JSON.parse(localStorage.getItem("InventoryCategories")) || [];
 
     this.sortArray(allData); // Sorting the Categories (newest first by default)
     return allData;
   }
 
   getLocations() {
-    // Getting all of the locations
+    // Getting all of the Locations
     const allData =
-      JSON.parse(localStorage.getItem("Inventorylocations")) || [];
+      JSON.parse(localStorage.getItem("InventoryLocations")) || [];
 
     this.sortArray(allData); // Sorting the Categories (newest first by default)
     return allData;
   }
 
   saveCategorie(data) {
-    // Getting all of the categories
+    // Getting all of the Categories
     const allCategories = this.getCategories();
     if (data.id != 0) {
-      // Finding the category that already exists
-      const existed = allCategories.find((category) => category.id == data.id);
+      // Finding the Category that already exists
+      const existed = allCategories.find((Category) => Category.id == data.id);
 
       existed.title = data.title;
       existed.description = data.description;
@@ -37,8 +37,8 @@ class Storage {
     } else {
       // Finding if the data already exist
       const existed = allCategories.find(
-        (category) =>
-          category.title.toLowerCase().trim() == data.title.toLowerCase().trim()
+        (Category) =>
+          Category.title.toLowerCase().trim() == data.title.toLowerCase().trim()
       );
 
       if (existed) {
@@ -52,7 +52,7 @@ class Storage {
         allCategories.push(data);
       }
     }
-    localStorage.setItem("Inventorycategories", JSON.stringify(allCategories));
+    localStorage.setItem("InventoryCategories", JSON.stringify(allCategories));
   }
 
   saveProduct(data) {
@@ -62,7 +62,7 @@ class Storage {
       const existed = allProducts.find((product) => product.id == data.id); // Finding the data that already exist
 
       existed.title = data.title;
-      existed.category = data.category;
+      existed.Category = data.Category;
       existed.quantity = data.quantity;
       existed.price = data.price;
       existed.updated = new Date().toISOString();
@@ -75,7 +75,7 @@ class Storage {
 
       if (existed) {
         existed.title = data.title;
-        existed.category = data.category;
+        existed.Category = data.Category;
         existed.quantity = data.quantity;
         existed.price = data.price;
         existed.updated = new Date().toISOString();
@@ -92,23 +92,23 @@ class Storage {
     // Getting all of the Data
     const allLocation = this.getLocations();
     if (data.id != 0) {
-      const existed = allLocations.find((location) => location.id == data.id); // Finding the data that already exist
+      const existed = allLocations.find((Location) => Location.id == data.id); // Finding the data that already exist
 
       existed.title = data.title;
-      existed.category = data.category;
+      existed.Category = data.Category;
       existed.quantity = data.quantity;
       existed.price = data.price;
       existed.updated = new Date().toISOString();
     } else {
       // Finding if the data already exist
       const existed = allLocations.find(
-        (location) =>
-          location.title.toLowerCase().trim() == data.title.toLowerCase().trim()
+        (Location) =>
+          Location.title.toLowerCase().trim() == data.title.toLowerCase().trim()
       );
 
       if (existed) {
         existed.title = data.title;
-        existed.category = data.category;
+        existed.Category = data.Category;
         existed.quantity = data.quantity;
         existed.price = data.price;
         existed.updated = new Date().toISOString();
@@ -139,7 +139,7 @@ class Storage {
     // Getting all the Products
     const allLocations = this.getLocations();
     // Filtering the Products
-    const filteredProducts = allLocations.filter((location) => location.id != id);
+    const filteredProducts = allLocations.filter((Location) => Location.id != id);
     // Update the Storage
     localStorage.setItem("InventoryLocations", JSON.stringify(filteredProducts));
   }
@@ -148,9 +148,9 @@ class Storage {
     // Getting all the Products
     const allCategories = this.getCategories();
     // Filtering the Products
-    const filteredProducts = allCategories.filter((category) => category.id != id);
+    const filteredProducts = allCategories.filter((Category) => Category.id != id);
     // Update the Storage
-    localStorage.setItem("Inventorycategories", JSON.stringify(filteredProducts));
+    localStorage.setItem("InventoryCategories", JSON.stringify(filteredProducts));
   }
 }
 
