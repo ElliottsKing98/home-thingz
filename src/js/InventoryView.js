@@ -176,9 +176,9 @@ class InventoryUi {
     if (
       !productNameInput.value ||
       !categoryInput.value ||
+      !locationInput.value ||
       !productQuantityInput.value ||
       !productPriceInput.value
-      !locationInput.value ||
     ) {
       alert("Please enter all of the fields!");
       return -1;
